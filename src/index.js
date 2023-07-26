@@ -5,8 +5,11 @@ import App from './App';
 import * as serviceWorker from './registerServiceWorker';
 
 // render micro frontend function
+let root = null
+console.log(root, "root");
 window.renderFcuPortal = (containerId, history) => {
-  ReactDOM.createRoot(document.getElementById(containerId)).render(
+  root = ReactDOM.createRoot(document.getElementById(containerId))
+  root.render(
     <App history={history}/>
   );
   serviceWorker.unregister();
@@ -14,12 +17,17 @@ window.renderFcuPortal = (containerId, history) => {
 
 // unmount micro frontend function
 window.unmountFcuPortal = containerId => {
-  ReactDOM.unmountComponentAtNode(document.getElementById(containerId));
+  // console.log(containerId, 'containerId', document.getElementById(containerId));
+  console.log(root, 'root');
+  root.unmount()
+  // element.parentNode.childNodes[1].parentNode.removeChild(element.parentNode.childNodes[1])
+  // ReactDOM.unmountComponentAtNode(element);
 };
 
 // Mount to root if it is not a micro frontend
 if (!document.getElementById('FcuPortal-container')) {
-  ReactDOM.createRoot(document.getElementById('root')).render(
+  root = ReactDOM.createRoot(document.getElementById('root'))
+  root.render(
     <App/>
   );
 }
