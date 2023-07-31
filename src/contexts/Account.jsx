@@ -27,7 +27,6 @@ export const Account = (props) => {
         localStorage.setItem("expiryTime", expiryTime)
         localStorage.setItem("isAuthenticated", true)
         localStorage.setItem("requestingSub", requestingSub)
-        localStorage.setItem("requestingSub", requestingSub)
         setAuthData({ 
             ...authData, 
             email: email, 
@@ -65,7 +64,7 @@ export const Account = (props) => {
                 handleSignOut()
                 setUser(null)
                 Toast('', 'logging out', 'success')
-                navigate('/fcuPortal/forbidden')
+                navigate('/')
                 // return <Navigate to={'/fcuPortal/page-not-found'}/>
             })
             .catch(error => {

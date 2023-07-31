@@ -5,7 +5,7 @@ import { useAuth } from './contexts/Account';
 const ProtectedRoute = ({ children }) => {
     const { authData, signOut } = useAuth()
     console.log(authData, 'authData');
-    // const expiryTime = localStorage.getItem('expiryTime')
+    
     if (authData.isAuthenticated && authData.expiryTime > Date.now()) {
         return children
     }
